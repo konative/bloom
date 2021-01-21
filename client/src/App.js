@@ -1,9 +1,11 @@
 import React from 'react'
+import AllListings from "./components/AllListings/AllListings"
 
 function App() {
     return (
         <div>
-            <h1>App</h1>
+            <h1>Bloom</h1>
+            <AllListings></AllListings>
         </div>
     )
 }
