@@ -8,10 +8,23 @@ function Form() {
     const [desc, setDesc] = useState("");
     const [termsAndCon, setTermsAndCon] = useState(false);
 
+    const handleSubmit = (event) => {
+        console.log(`
+        Business Name: ${busName}
+        Phone Number: ${phoneNum}
+        Address: ${address}
+        Description: ${desc}
+        Accepted Terms and Conditions: ${termsAndCon}
+    `)
 
+        event.preventDefault();
+
+
+
+    }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <input placeholder='Please enter your business name' value={busName} onChange={e => setBusName(e.target.value)} required />
             <br />
             <input placeholder='Please enter your phone number' value={phoneNum} onChange={e => setPhoneNum(e.target.value)} required />
