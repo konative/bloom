@@ -16,7 +16,7 @@ mongoose
     console.log("Connected to bloom database");
     app.listen(5000, () => {
       console.log("Backend server Online @ port 5000");
-  })
+    });
   })
   .catch((err) => {
     console.log("Error could not connect");

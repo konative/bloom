@@ -19,11 +19,11 @@ router.get("/listings", async (req, res) => {
 
 //Post new listing
 router.post("/listings", async (req, res) => {
-    const listingInfo = req.body;
-    const newListing = Listing(listingInfo);
+  const listingInfo = req.body;
+  const newListing = Listing(listingInfo);
   try {
-      await newListing.save();
-      res.status(201); //Successfully created
+    await newListing.save();
+    res.status(201); //Successfully created
   } catch (error) {
     console.log("Could not save new listing to database");
     console.log(error.message);

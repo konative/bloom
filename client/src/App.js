@@ -1,13 +1,14 @@
-import React from 'react'
-import AllListings from "./components/AllListings/AllListings"
+import React from "react";
+import AllListings from "./components/AllListings/AllListings";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-    return (
-        <div>
-            <h1>Bloom</h1>
-            <AllListings></AllListings>
-        </div>
-    )
+  return (
+    <div>
+      <Navbar></Navbar>
+      <AllListings></AllListings>
+    </div>
+  );
 }
 
-export default App
+export default App;
