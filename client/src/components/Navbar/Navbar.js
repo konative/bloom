@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import { NavbarItems } from "./NavbarItems";
+import { Link } from "react-router-dom";
 
 class Navbar extends React.Component {
   render() {
@@ -10,11 +11,11 @@ class Navbar extends React.Component {
         <ul className="navMenu">
           {NavbarItems.map((item, index) => {
             return (
-              <li key={index}>
-                <a className={item.cName} href={item.url}>
+              <Link to={item.url}>
+                <li key={index} className={item.cName}>
                   {item.title}
-                </a>
-              </li>
+                </li>
+              </Link>
             );
           })}
         </ul>

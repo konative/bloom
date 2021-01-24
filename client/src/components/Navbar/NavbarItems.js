@@ -1,13 +1,13 @@
 export const NavbarItems = [
   {
     title: "Home",
-    url: "#",
+    url: "/",
     cName: "navbarItems",
   },
 
   {
-    title: "About",
-    url: "#",
+    title: "Register",
+    url: "/register",
     cName: "navbarItems",
   },
   {

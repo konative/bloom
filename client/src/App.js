@@ -1,12 +1,12 @@
 import React from "react";
-import AllListings from "./components/AllListings/AllListings";
 import Navbar from "./components/Navbar/Navbar";
+import Main from "./routing/Main";
 
 function App() {
   return (
     <div>
       <Navbar></Navbar>
-      <AllListings></AllListings>
+      <Main></Main>
     </div>
   );
 }
