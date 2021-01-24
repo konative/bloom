@@ -24,7 +24,7 @@ function Form() {
     }
 
     return (
-        <container>
+        <div>
             <form onSubmit={handleSubmit}>
                 <input placeholder='Please enter your business name' value={busName} onChange={e => setBusName(e.target.value)} required />
                 <br />
@@ -37,7 +37,7 @@ function Form() {
                 <br />
                 <button>Submit</button>
             </form>
-        </container>
+        </div>
     );
 }
 
