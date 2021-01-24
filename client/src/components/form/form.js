@@ -24,6 +24,7 @@ function Form() {
 
     }
 
+
     return (
         <div className='formCont'>
             <form onSubmit={handleSubmit} className='inputs'>
@@ -43,3 +44,4 @@ function Form() {
 }
 
 export default Form
+

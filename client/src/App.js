@@ -1,13 +1,16 @@
-import React from 'react'
-import AllListings from "./components/AllListings/AllListings"
-import Form from "./components/Form/Form"
+
+import React from "react";
+import AllListings from "./components/AllListings/AllListings";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-    return (
-        <div>
-            <Form></Form>
-        </div>
-    )
+  return (
+    <div>
+      <Navbar></Navbar>
+      <AllListings></AllListings>
+    </div>
+  );
+
 }
 
-export default App
+export default App;
