@@ -7,16 +7,8 @@ COVID-19. The global pandemic that some may be lucky enough to have grown accust
 
 ## dev tasks. 
 
-**general**
+**to-do**
 
-- [x] backend/front setup
-- [ ] connect frontend and backend 
-
-**backend**
-
-- [ ] create backend functionalities 
-- [ ] create frontend API to access backend 
-
-**frontend**
-- [ ] Create react components
+- Add Searchbar and implement Search 
+- Add registration page to register a business
 
