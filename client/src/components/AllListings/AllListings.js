@@ -1,22 +1,46 @@
-import React from "react";
+/* eslint-disable no-unused-expressions */
+//^Unwanted eslint based error removal
+
+import React, { useEffect, useState } from "react";
 import "./AllListings.css";
 import ListingCard from "../ListingCard/ListingCard";
 
-function allListings() {
-  return (
-    <div className="AllListings">
-      <ListingCard
-        name="Joe's Pizza"
-        description="Great Pizza"
-        phoneNum="911"
-      />
-      <ListingCard
-        name="Joe's Pizza"
-        description="Great Pizza"
-        phoneNum="911"
-      />
-    </div>
-  );
-}
+function AllListings() {
+  const [Loaded, setLoaded] = useState(false);
+  const [Listings, setListings] = useState([]);
 
-export default allListings;
+  useEffect(async () => {
+    await fetch("http://localhost:5000/listings")
+      .then(async (res) => await res.json())
+      .then((result) => {
+        if (!Loaded) {
+          setListings(result);
+          console.log(Listings);
+          setLoaded(true);
+        }
+      })
+      .catch((error) => console.log(error.message)),
+      [];
+
+    // return () => {
+    //   isLoaded = true;
+    // };
+  }, []);
+
+  if (Loaded) {
+    return (
+      <div>
+        {Listings.map((item) => (
+          <ListingCard
+            name={item.name}
+            description={item.description}
+            id={item.id}
+          ></ListingCard>
+        ))}
+      </div>
+    );
+  } else {
+    return <div className="Loading">Loading...</div>;
+  }
+}
+export default AllListings;

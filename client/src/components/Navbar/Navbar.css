@@ -29,11 +29,11 @@
   text-align: center;
   width: 70vw;
   justify-content: end;
+  text-decoration: none;
 }
 
 .navbarItems {
   color: white;
-  text-decoration: none;
 }
 
 .navbarItems:hover {

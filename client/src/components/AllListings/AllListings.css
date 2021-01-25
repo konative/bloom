@@ -1,4 +1,10 @@
-.AllListings{
-    display: flex;
-    flex-direction: row;
+.AllListings {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: row;
+}
+
+.Loading {
+  font-family: "Montserrat", sans-serif;
+  color: rgba(15, 15, 15, 0.452);
 }
