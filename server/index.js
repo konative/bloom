@@ -8,6 +8,7 @@ const mongoURL = "mongodb://localhost:27017/bloom";
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 const Business = require("./models/businessModel");
 const listingRoutes = require("./routes/listingRouting");
+const cors = require("cors");
 
 //Connect to local Mongo database
 mongoose
@@ -24,6 +25,7 @@ mongoose
   });
 
 app.set("view engine", "ejs");
+app.use(cors()); //Needs to be updated before deployment for safety issues
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use("/", listingRoutes);
