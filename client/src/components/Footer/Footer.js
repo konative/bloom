@@ -7,7 +7,10 @@ function Footer() {
 
 return (
 
-    <div></div>
+    <div>
+        <line></line>
+        <div></div>
+    </div>
 
 );
 
