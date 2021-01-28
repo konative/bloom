@@ -21,10 +21,6 @@ function AllListings() {
       })
       .catch((error) => console.log(error.message)),
       [];
-
-    // return () => {
-    //   isLoaded = true;
-    // };
   }, []);
 
   if (Loaded) {
