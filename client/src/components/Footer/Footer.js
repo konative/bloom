@@ -8,8 +8,10 @@ function Footer() {
 return (
 
     <div>
-        <line></line>
-        <div></div>
+        <hr></hr>
+        <div>
+            Developed by Konative&#8482;
+        </div>
     </div>
 
 );
