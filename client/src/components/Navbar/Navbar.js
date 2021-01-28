@@ -11,7 +11,7 @@ class Navbar extends React.Component {
         <ul className="navMenu">
           {NavbarItems.map((item, index) => {
             return (
-              <Link to={item.url}>
+              <Link to={item.url} style={{ textDecoration: "none" }}>
                 <li key={index} className={item.cName}>
                   {item.title}
                 </li>

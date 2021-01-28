@@ -1,10 +1,13 @@
 import React from "react";
-import Footer from "../../../components/Footer/Footer";
+
+import AllListings from "../../../components/AllListings/AllListings";
+import "./Home.css";
 
 function Home() {
   return (
-    <div>
+    <div className="Home">
       <h1>Home</h1>
+      <AllListings></AllListings>
     </div>
   );
 }
