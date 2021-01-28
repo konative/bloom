@@ -7,11 +7,19 @@ router.get("/", (req, res) => {
   res.send("hi");
 });
 
-//Get all listings from DB
+//Get required listings from DB
 router.get("/listings", async (req, res) => {
+  searchTerm = req.query.searchTerm;
+  const allListings = await Listing.find({}); //Return all documents (businesses)
   try {
-    const allListings = await Listing.find({}); //Return all documents (businesses)
-    res.send(allListings);
+    if (searchTerm == "") {
+      res.send(allListings);
+    } else {
+      const filteredArray = allListings.filter((listing) => {
+        return listing.name.toLowerCase().includes(`${searchTerm}`);
+      });
+      res.send(filteredArray);
+    }
   } catch (error) {
     console.log(error);
   }
