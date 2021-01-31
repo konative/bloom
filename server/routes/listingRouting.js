@@ -12,6 +12,7 @@ router.get("/listings", async (req, res) => {
   searchTerm = req.query.searchTerm;
   const allListings = await Listing.find({}); //Return all documents (businesses)
   try {
+    console.log(searchTerm);
     if (searchTerm == "") {
       res.send(allListings);
     } else {

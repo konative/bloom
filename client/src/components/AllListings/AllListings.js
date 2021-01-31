@@ -1,42 +1,35 @@
 /* eslint-disable no-unused-expressions */
 //^Unwanted eslint based error removal
-
+import { connect } from "react-redux";
 import React, { useEffect, useState } from "react";
 import "./AllListings.css";
 import ListingCard from "../ListingCard/ListingCard";
 
-function AllListings() {
+function AllListings({ listing }) {
   const [Loaded, setLoaded] = useState(false);
-  const [Listings, setListings] = useState([]);
 
-  useEffect(async () => {
-    await fetch("http://localhost:5000/listings")
-      .then(async (res) => await res.json())
-      .then((result) => {
-        if (!Loaded) {
-          setListings(result);
-          console.log(Listings);
-          setLoaded(true);
-        }
-      })
-      .catch((error) => console.log(error.message)),
-      [];
-  }, []);
-
-  if (Loaded) {
-    return (
-      <div>
-        {Listings.map((item) => (
-          <ListingCard
-            name={item.name}
-            description={item.description}
-            id={item.id}
-          ></ListingCard>
-        ))}
-      </div>
-    );
-  } else {
-    return <div className="Loading">Loading...</div>;
-  }
+  let listingsArray = listing;
+  console.log(listingsArray);
+  //if (Loaded) {
+  return (
+    <div>
+      {listingsArray.map((item) => (
+        <ListingCard
+          name={item.name}
+          description={item.description}
+          id={item.id}
+        ></ListingCard>
+      ))}
+    </div>
+  );
+  // } else {
+  //   return <div className="Loading">Loading...</div>;
+  // }
 }
-export default AllListings;
+
+const mapStateToProps = (state) => {
+  return {
+    listing: state.listingReducer.listingReducer,
+  };
+};
+export default connect(mapStateToProps)(AllListings);

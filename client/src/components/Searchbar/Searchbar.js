@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import updateListingsWithSearch from "../../redux/actions/updateListings.js";
+import { connect } from "react-redux";
 
-function Searchbar() {
+function Searchbar({ updateListingsWithSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -14,10 +16,11 @@ function Searchbar() {
   };
 
   const onChangeHandler = async (e) => {
-    setSearchTerm(e.target.value);
+    await setSearchTerm(e.target.value);
   };
 
   useEffect(async () => {
+    updateListingsWithSearch(searchTerm);
     await fetchSearchResults();
   }, [searchTerm]);
 
@@ -34,4 +37,8 @@ function Searchbar() {
   );
 }
 
-export default Searchbar;
+const mapDispatchToProps = {
+  updateListingsWithSearch,
+};
+
+export default connect(null, mapDispatchToProps)(Searchbar);
