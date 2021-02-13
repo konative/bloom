@@ -1,4 +1,4 @@
-const updateListingsReducer = (state = [{ name: "dog" }], action) => {
+const updateListingsReducer = (state = [{}], action) => {
   switch (action.type) {
     case "update":
       return {
