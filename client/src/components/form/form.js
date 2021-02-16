@@ -36,6 +36,8 @@ function Form() {
           onChange={(e) => setPhoneNum(e.target.value)}
           required
           className="inputs"
+          type="tel"
+          pattern="^\d{3}\d{3}\d{4}$"
         />
         <input
           placeholder="Please enter your address"
