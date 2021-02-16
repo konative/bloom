@@ -9,6 +9,4 @@ COVID-19. The global pandemic that some may be lucky enough to have grown accust
 
 **to-do**
 
-- Add Searchbar and implement Search 
-- Add registration page to register a business
 
