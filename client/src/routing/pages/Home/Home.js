@@ -13,10 +13,10 @@ function Home({ show, displaySearch }) {
     }
   });
 
-  if (displaySearch === false) {
-    console.log("Y" + displaySearch);
-    show();
-  }
+  // if (displaySearch === false) {
+  //   console.log("Y" + displaySearch);
+  //   show();
+  // }
   //
 
   return (

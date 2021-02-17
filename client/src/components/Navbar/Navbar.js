@@ -15,6 +15,7 @@ function Navbar({ displaySearch }) {
       );
     }
   };
+
   return (
     <nav className="Navbar">
       <h1 className="navbarLogo">bloom.</h1>
