@@ -4,7 +4,11 @@ export const NavbarItems = [
     url: "/",
     cName: "navbarItems",
   },
-
+  {
+    title: "Login",
+    url: "/login",
+    cName: "navbarItems",
+  },
   {
     title: "Register",
     url: "/register",
