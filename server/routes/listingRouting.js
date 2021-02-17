@@ -17,7 +17,7 @@ router.get("/listings", async (req, res) => {
       res.send(allListings);
     } else {
       const filteredArray = allListings.filter((listing) => {
-        return listing.name.toLowerCase().includes(`${searchTerm}`);
+        return listing.name.toLowerCase().includes(`${searchTerm.toLowerCase()}`);
       });
       res.send(filteredArray);
     }
