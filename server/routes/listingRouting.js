@@ -21,9 +21,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/listings/:listing", async (req, res) =>{
-  const listing = req.params.listing;
-  res.send(listing);
+router.get("/listings/:id", async (req, res) =>{
+  const id = req.params.id;
+  console.log(id)
+  
+  try {
+    const listingData = await Listing.findById(id)
+    res.send(listingData)
+  } catch (error){
+    console.log(error.message);
+    res.send("NOT FOUND")
+  }
 });
 
 //Post new listing
