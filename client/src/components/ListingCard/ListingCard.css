@@ -10,3 +10,6 @@
   color: rgb(81, 87, 81);
   background-color: rgb(245, 249, 233);
 }
+.card:hover {
+  cursor: pointer;
+}
