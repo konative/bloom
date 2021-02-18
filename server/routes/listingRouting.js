@@ -22,8 +22,9 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/listings/:listing", async (req, res) =>{
-
-}
+  const listing = req.params.listing;
+  res.send(listing);
+});
 
 //Post new listing
 router.post("/listings", async (req, res) => {
