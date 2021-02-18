@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import "./ListingCard.css";
 
 function ListingCard(props) {
+
+  const [redirect, setRedirect] = useState(false);
+  const redirectHandler = () => {
+    setRedirect(true);
+  }
+  const renderRedirect = () => {
+    if (redirect) {
+      return <Redirect push to = {`/listing/${props.id}`} />
+    }
+  }
+
   return (
-    <div className="card">
+    <div className="card" onClick={redirectHandler} >
+      {renderRedirect()}
       <h1>{props.name}</h1>
       <h2>Description: {props.description}</h2>
       <h3>Contact: {props.phoneNum}</h3>

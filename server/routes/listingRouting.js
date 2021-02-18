@@ -2,13 +2,8 @@ const express = require("express");
 const Listing = require("../models/businessModel.js");
 const router = express.Router();
 
-//Get homepage **NOT APPLICABLE**
-router.get("/", (req, res) => {
-  res.send("hi");
-});
-
 //Get required listings from DB
-router.get("/listings", async (req, res) => {
+router.get("/", async (req, res) => {
   searchTerm = req.query.searchTerm;
   const allListings = await Listing.find({}); //Return all documents (businesses)
   try {
@@ -17,12 +12,28 @@ router.get("/listings", async (req, res) => {
       res.send(allListings);
     } else {
       const filteredArray = allListings.filter((listing) => {
-        return listing.name.toLowerCase().includes(`${searchTerm}`);
+        return listing.name
+          .toLowerCase()
+          .includes(`${searchTerm.toLowerCase()}`);
       });
       res.send(filteredArray);
     }
   } catch (error) {
     console.log(error);
+  }
+});
+
+router.get("/listings/:id", async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const listingData = await Listing.findById(id);
+    console.log(listingData);
+    res.send(listingData);
+  } catch (error) {
+    console.log(error.message);
+    const listingData = JSON.stringify({ notfound: true });
+    res.send(listingData);
   }
 });
 
