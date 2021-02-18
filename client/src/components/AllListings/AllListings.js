@@ -19,7 +19,7 @@ function AllListings({ listing }) {
             description={item.description}
             phoneNum={item.phoneNum}
             address={item.address}
-            id={item.id}
+            id={item._id}
           ></ListingCard>
         ))}
       </div>
