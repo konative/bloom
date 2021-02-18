@@ -12,7 +12,9 @@ router.get("/", async (req, res) => {
       res.send(allListings);
     } else {
       const filteredArray = allListings.filter((listing) => {
-        return listing.name.toLowerCase().includes(`${searchTerm.toLowerCase()}`);
+        return listing.name
+          .toLowerCase()
+          .includes(`${searchTerm.toLowerCase()}`);
       });
       res.send(filteredArray);
     }
@@ -21,16 +23,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/listings/:id", async (req, res) =>{
+router.get("/listings/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(id)
-  
+
   try {
-    const listingData = await Listing.findById(id)
-    res.send(listingData)
-  } catch (error){
+    const listingData = await Listing.findById(id);
+    console.log(listingData);
+    res.send(listingData);
+  } catch (error) {
     console.log(error.message);
-    res.send("NOT FOUND")
+    const listingData = JSON.stringify({ notfound: true });
+    res.send(listingData);
   }
 });
 
