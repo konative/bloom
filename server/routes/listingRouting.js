@@ -2,10 +2,7 @@ const express = require("express");
 const Listing = require("../models/businessModel.js");
 const router = express.Router();
 
-//Get homepage **NOT APPLICABLE**
-router.get("/", (req, res) => {
-  res.send("hi");
-});
+
 
 //Get required listings from DB
 router.get("/listings", async (req, res) => {
@@ -17,7 +14,7 @@ router.get("/listings", async (req, res) => {
       res.send(allListings);
     } else {
       const filteredArray = allListings.filter((listing) => {
-        return listing.name.toLowerCase().includes(`${searchTerm}`);
+        return listing.name.toLowerCase().includes(`${searchTerm.toLowerCase()}`);
       });
       res.send(filteredArray);
     }
