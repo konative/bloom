@@ -54,6 +54,7 @@ router.get("/owners", async (req, res) => {
   const owner = req.query.user;
   console.log(owner);
   const foundUser = await Listing.find({ owner: owner });
+  console.log(foundUser);
   res.send(JSON.stringify(foundUser));
 });
 

@@ -15,12 +15,16 @@ function MyAccount() {
     );
   }, []);
 
-  return (
-    <div>
-      <h2>My Listings:</h2>
-      <ListingCard name={myListings.name}></ListingCard>
-    </div>
-  );
+  if (myListings.length > 0) {
+    return <ListingCard name={myListings[0].name}></ListingCard>;
+  }
+  return <div>Zero Listings Available</div>;
+  //   return (
+  //     <div>
+  //       <h2>My Listings:</h2>
+  //       <ListingCard name={myListings[0].name}></ListingCard>
+  //     </div>
+  //   );
 }
 
 export default MyAccount;
