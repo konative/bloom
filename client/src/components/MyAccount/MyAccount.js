@@ -6,6 +6,7 @@ function MyAccount() {
 
 
     const owner = "johnfc@gmail.com";
+    const [myListings, setMyListings] = useState([]);
     useEffect(async () => {
         await fetch(`http://localhost:5000/owners?user=${owner}`, {
 
