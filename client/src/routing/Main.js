@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home.js";
 import Register from "./pages/Register/Register.js";
 import Listing from "./pages/Listing/Listing.js";
 import Account from "./pages/Account/Account.js";
+import Edit from "./pages/Edit/Edit.js";
 
 function Main() {
   return (
@@ -13,6 +14,7 @@ function Main() {
       <Route exact path="/register" component={Register}></Route>
       <Route path="/listing" component={Listing}></Route>
       <Route exact path="/account" component={Account}></Route>
+      <Route path="/edit" component={Edit}></Route>
     </Switch>
   );
 }

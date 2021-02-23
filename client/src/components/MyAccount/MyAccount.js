@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ListingCard from "../ListingCard/ListingCard.js";
 import "./MyAccount.css";
 
-function MyAccount() {
+function MyAccount(props) {
   const owner = "johnfc@gmail.com";
   const [myListings, setMyListings] = useState([]);
   useEffect(async () => {
@@ -26,6 +26,7 @@ function MyAccount() {
         phoneNum={item.phoneNum}
         address={item.address}
         id={item._id}
+        edit={true}
         ></ListingCard>))}
         </div>
         )
