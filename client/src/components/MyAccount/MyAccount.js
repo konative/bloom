@@ -16,15 +16,22 @@ function MyAccount() {
   }, []);
 
   if (myListings.length > 0) {
-    return <ListingCard name={myListings[0].name}></ListingCard>;
-  }
-  return <div>Zero Listings Available</div>;
-  //   return (
-  //     <div>
-  //       <h2>My Listings:</h2>
-  //       <ListingCard name={myListings[0].name}></ListingCard>
-  //     </div>
-  //   );
+    return (
+        <div>
+        <h2>My Listings:</h2>
+        {myListings.map((item) => (
+        <ListingCard 
+        name={item.name}
+        description={item.description}
+        phoneNum={item.phoneNum}
+        address={item.address}
+        ></ListingCard>))}
+        </div>
+        )
+    }
+  return ( <div>
+      You do not have any listings.
+  </div>)
 }
 
 export default MyAccount;

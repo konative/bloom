@@ -53,6 +53,13 @@ seedBusinesses = [
     address: "123 Daid Rd",
     owner: "deepikais@gmail.com",
   },
+  {
+    name: "John's Pliers",
+    description: "John sells pliers!",
+    phoneNum: "1231231236",
+    address: "125 Daid Rd",
+    owner: "johnfc@gmail.com",
+  },
 ];
 
 //Seed Database and Close Connection
