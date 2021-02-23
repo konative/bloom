@@ -25,6 +25,7 @@ function MyAccount() {
         description={item.description}
         phoneNum={item.phoneNum}
         address={item.address}
+        id={item._id}
         ></ListingCard>))}
         </div>
         )
