@@ -12,7 +12,9 @@ router.get("/", async (req, res) => {
       res.send(allListings);
     } else {
       const filteredArray = allListings.filter((listing) => {
-        return listing.name.toLowerCase().includes(`${searchTerm.toLowerCase()}`);
+        return listing.name
+          .toLowerCase()
+          .includes(`${searchTerm.toLowerCase()}`);
       });
       res.send(filteredArray);
     }
@@ -21,17 +23,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/listings/:id", async (req, res) =>{
+router.get("/listings/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(id)
-  
+  console.log(id);
+
   try {
-    const listingData = await Listing.findById(id)
-    res.send(listingData)
-  } catch (error){
+    const listingData = await Listing.findById(id);
+    res.send(listingData);
+  } catch (error) {
     console.log(error.message);
-    res.send("NOT FOUND")
-    console.log(listingData)
+    res.send("NOT FOUND");
+    console.log(listingData);
   }
 });
 
@@ -48,11 +50,11 @@ router.post("/listings", async (req, res) => {
   }
 });
 
-router.get("/owners", async (req,res) => {
+router.get("/owners", async (req, res) => {
   const owner = req.query.user;
-  console.log(owner)
-  const foundUser = await Listing.find({owner: owner});
-  //res.send(foundUser);
+  console.log(owner);
+  const foundUser = await Listing.find({ owner: owner });
+  res.send(JSON.stringify(foundUser));
 });
 
 module.exports = router;

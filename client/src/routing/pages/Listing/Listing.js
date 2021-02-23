@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Listing.css";
 
-
 function Listing() {
   const [isFound, setIsFound] = useState(false);
   const [listingData, setListingData] = useState({});
