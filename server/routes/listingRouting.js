@@ -12,9 +12,7 @@ router.get("/", async (req, res) => {
       res.send(allListings);
     } else {
       const filteredArray = allListings.filter((listing) => {
-        return listing.name
-          .toLowerCase()
-          .includes(`${searchTerm.toLowerCase()}`);
+        return listing.name.toLowerCase().includes(`${searchTerm.toLowerCase()}`);
       });
       res.send(filteredArray);
     }
@@ -23,17 +21,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/listings/:id", async (req, res) => {
+router.get("/listings/:id", async (req, res) =>{
   const id = req.params.id;
-
+  console.log(id)
+  
   try {
-    const listingData = await Listing.findById(id);
-    console.log(listingData);
-    res.send(listingData);
-  } catch (error) {
+    const listingData = await Listing.findById(id)
+    res.send(listingData)
+  } catch (error){
     console.log(error.message);
-    const listingData = JSON.stringify({ notfound: true });
-    res.send(listingData);
+    res.send("NOT FOUND")
+    console.log(listingData)
   }
 });
 
@@ -48,6 +46,13 @@ router.post("/listings", async (req, res) => {
     console.log("Could not save new listing to database");
     console.log(error.message);
   }
+});
+
+router.get("/owners", async (req,res) => {
+  const owner = req.query.user;
+  console.log(owner)
+  const foundUser = await Listing.find({owner: owner});
+  //res.send(foundUser);
 });
 
 module.exports = router;
