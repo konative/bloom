@@ -28,6 +28,9 @@ function Listing() {
   return (
     <div className="Listing">
       <h1>{listingData.name}</h1>
+      <h2>{listingData.description}</h2>
+      <h3>{listingData.phoneNum}</h3>
+      <h3>{listingData.address}</h3>
     </div>
   );
 }
