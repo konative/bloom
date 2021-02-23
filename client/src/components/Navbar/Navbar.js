@@ -3,6 +3,7 @@ import "./Navbar.css";
 import Searchbar from "../Searchbar/Searchbar.js";
 import { NavbarItems } from "./NavbarItems";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class Navbar extends React.Component {
   render() {
