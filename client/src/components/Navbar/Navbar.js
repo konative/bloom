@@ -2,10 +2,10 @@ import React from "react";
 import "./Navbar.css";
 import Searchbar from "../Searchbar/Searchbar.js";
 import { NavbarItems } from "./NavbarItems";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-function Navbar({ displaySearch }) {
+function Navbar({ displaySearch, isLoggedIn }) {
   const display = () => {
     if (displaySearch == true) {
       return (
@@ -25,6 +25,10 @@ function Navbar({ displaySearch }) {
       }
       <ul className="navMenu">
         {NavbarItems.map((item, index) => {
+          if (item.title == "Login" && isLoggedIn) {
+            item.title = "My Account";
+            item.url = "/myAccount";
+          }
           return (
             <Link to={item.url} style={{ textDecoration: "none" }}>
               <li key={index} className={item.cName}>
@@ -41,6 +45,7 @@ function Navbar({ displaySearch }) {
 const mapStateToProps = (state) => {
   return {
     displaySearch: state.displaySearchReducer,
+    isLoggedIn: state.isLoggedReducer,
   };
 };
 
