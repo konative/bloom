@@ -30,6 +30,7 @@ function MyAccount() {
         )
     }
   return ( <div>
+      <h2>My Listings:</h2>
       You do not have any listings.
   </div>)
 }
