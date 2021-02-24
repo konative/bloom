@@ -6,13 +6,11 @@ import "./LoginForm.css";
 function LoginForm({ login, isLogged }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [tryAgain, setTryAgain] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(`
-    //     Username: ${username}
-    //     Password: ${password}
-    // `);
+
     const formData = { user: username, pass: password };
     console.log("Login Form input:" + formData);
 
@@ -28,13 +26,18 @@ function LoginForm({ login, isLogged }) {
         if (response.status === 200) {
           await response.json().then((data) => {
             console.log("Token data:" + data.token);
-            localStorage.setItem("token", data.token);
+            if (data.token === undefined) {
+              setTryAgain(true);
+            } else {
+              setTryAgain(false);
+              localStorage.setItem("token", data.token);
+            }
           });
         }
       })
       .catch((error) => {
         console.log(error);
-        alert("Try again!");
+        alert("Error");
       });
   };
 
@@ -58,6 +61,7 @@ function LoginForm({ login, isLogged }) {
           required
           className="inputs"
         />
+        {tryAgain && <div>Please try again</div>}
         <br />
         <button type="submit">Submit</button>
       </form>

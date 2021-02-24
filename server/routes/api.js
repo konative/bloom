@@ -10,16 +10,40 @@ router.get("/", (req, res) => {
   res.send("hi");
 });
 
-router.get("/isLogged", (req, res, next) => {
+router.get(
+  "/isLogged",
   passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-      if (!req.user) {
-        res.json(false);
-      } else {
-        res.json(req.user);
-      }
-    };
-});
+  function (req, res) {
+    res.send(JSON.stringify({ name: "TRUE" }));
+  }
+);
+
+// router.get("/isLogged", async (req, res, next) => {
+//   // const { user, pass } = req.body;
+//   passport.authenticate("jwt", (err, user) => {
+//     console.log("user" + user);
+//     if (err) {
+//       return next(err);
+//     }
+//     if (!user) {
+//       return res.send(JSON.stringify({ status: "False" }));
+//     }
+//   })(req, res, next);
+// });
+
+// router.get("/isLogged", (req, res, next) => {
+//   passport.authenticate("local", { session: false }),
+//     (req, res) => {
+//       if (true) {
+//         res.send(JSON.stringify({ name: "name" }));
+//       }
+//       if (!req.user) {
+//         res.json(false);
+//       } else {
+//         res.json(req.user);
+//       }
+//     };
+// });
 
 //Get required listings from DB
 router.get("/listings", async (req, res) => {
@@ -65,12 +89,12 @@ router.post("/login", async (req, res, next) => {
     if (!user) {
       return res.send(JSON.stringify({ status: "False" }));
     }
-    req.login(user, () => {
-      const body = { name: user.name };
-      const token = jwt.sign({ user: body }, "secret", {
+    req.login(user, { session: false }, () => {
+      const body = { username: user.name };
+      const token = jwt.sign({ username: body }, "secret", {
         expiresIn: 86400 * 30,
       });
-      return res.json({ token });
+      return res.json({ success: true, token });
     });
   })(req, res, next);
 

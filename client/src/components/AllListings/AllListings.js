@@ -17,7 +17,7 @@ function AllListings({ listing }) {
           <ListingCard
             name={item.name}
             description={item.description}
-            id={item.id}
+            id={item._id}
           ></ListingCard>
         ))}
       </div>
