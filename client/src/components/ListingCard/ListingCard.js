@@ -24,7 +24,7 @@ function ListingCard(props) {
       <h2>Description: {props.description}</h2>
       <h3>Contact: {props.phoneNum}</h3>
       <h3>Address: {props.address}</h3>
-      <Link to ="/edit">Edit</Link>
+      <Link to ={`/edit/${props.id}`}>Edit</Link>
     </div>
     )
   }

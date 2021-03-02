@@ -14,7 +14,7 @@ function Main() {
       <Route exact path="/register" component={Register}></Route>
       <Route path="/listing" component={Listing}></Route>
       <Route exact path="/account" component={Account}></Route>
-      <Route path="/edit" component={Edit}></Route>
+      <Route path="/edit/:id" component={Edit}></Route>
     </Switch>
   );
 }
