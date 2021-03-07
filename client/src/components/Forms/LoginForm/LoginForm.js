@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../../redux/actions/isLogged.js";
 import "./LoginForm.css";
@@ -7,6 +8,7 @@ function LoginForm({ login, isLogged }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [tryAgain, setTryAgain] = useState(false);
+  //const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,6 +33,8 @@ function LoginForm({ login, isLogged }) {
             } else {
               setTryAgain(false);
               localStorage.setItem("token", data.token);
+              //setRedirect(true);
+              login();
             }
           });
         }
@@ -40,6 +44,14 @@ function LoginForm({ login, isLogged }) {
         alert("Error");
       });
   };
+
+  if (isLogged) {
+    return <Redirect to="/"></Redirect>;
+  }
+
+  // if (redirect) {
+  //   return <Redirect to="/"></Redirect>;
+  // }
 
   return (
     <div className="LoginForm">

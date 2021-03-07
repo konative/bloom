@@ -9,4 +9,14 @@ export const NavbarItems = [
     url: "/login",
     cName: "navbarItems",
   },
+  {
+    title: "My Account",
+    url: "/myAccount",
+    cName: "navbarItems",
+  },
+  {
+    title: "Logout",
+    url: "/",
+    cName: "navbarItems",
+  },
 ];

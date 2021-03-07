@@ -8,8 +8,7 @@ const user = { id: 1, name: "bob", pass: "pass" };
 passport.use(
   new localStrategy((username, password, done) => {
     if (username == user.name && password == user.pass) {
-      //Add return for incorrect username and incorrect password
-      console.log("LOCALWORK");
+      console.log("LOCALSTRAT-JWT");
       return done(null, user);
     }
     return done(null, false, { message: "Could not login" });

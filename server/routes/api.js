@@ -82,12 +82,11 @@ router.post("/newListing", async (req, res) => {
 router.post("/login", async (req, res, next) => {
   // const { user, pass } = req.body;
   passport.authenticate("local", (err, user) => {
-    console.log("name api.js/50" + user);
     if (err) {
       return next(err);
     }
     if (!user) {
-      return res.send(JSON.stringify({ status: "False" }));
+      return res.send(JSON.stringify({ status: "Invalid Login" }));
     }
     req.login(user, { session: false }, () => {
       const body = { username: user.name };

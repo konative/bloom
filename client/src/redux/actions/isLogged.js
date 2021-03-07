@@ -4,7 +4,7 @@ export const login = () => (dispatch, getState) => {
   });
 };
 
-export const logout = () => (dispatch) => {
+export const logout = () => (dispatch, getState) => {
   dispatch({
     type: "logout",
   });
