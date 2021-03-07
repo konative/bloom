@@ -75,7 +75,7 @@ function LoginForm({ login, isLogged }) {
         />
         {tryAgain && <div>Please try again</div>}
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );

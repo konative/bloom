@@ -5,46 +5,6 @@ const router = express.Router();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
-//Get homepage **NOT APPLICABLE**
-router.get("/", (req, res) => {
-  res.send("hi");
-});
-
-router.get(
-  "/isLogged",
-  passport.authenticate("jwt", { session: false }),
-  function (req, res) {
-    res.send(JSON.stringify({ name: "TRUE" }));
-  }
-);
-
-// router.get("/isLogged", async (req, res, next) => {
-//   // const { user, pass } = req.body;
-//   passport.authenticate("jwt", (err, user) => {
-//     console.log("user" + user);
-//     if (err) {
-//       return next(err);
-//     }
-//     if (!user) {
-//       return res.send(JSON.stringify({ status: "False" }));
-//     }
-//   })(req, res, next);
-// });
-
-// router.get("/isLogged", (req, res, next) => {
-//   passport.authenticate("local", { session: false }),
-//     (req, res) => {
-//       if (true) {
-//         res.send(JSON.stringify({ name: "name" }));
-//       }
-//       if (!req.user) {
-//         res.json(false);
-//       } else {
-//         res.json(req.user);
-//       }
-//     };
-// });
-
 //Get required listings from DB
 router.get("/listings", async (req, res) => {
   searchTerm = req.query.searchTerm;
@@ -79,6 +39,7 @@ router.post("/newListing", async (req, res) => {
   }
 });
 
+//Login authorization
 router.post("/login", async (req, res, next) => {
   // const { user, pass } = req.body;
   passport.authenticate("local", (err, user) => {
@@ -98,6 +59,7 @@ router.post("/login", async (req, res, next) => {
   })(req, res, next);
 });
 
+//Authorize current user
 router.post(
   "/auth",
   passport.authenticate("jwt", { session: false }),
@@ -106,4 +68,19 @@ router.post(
   }
 );
 
+router.post("/register", async (req, res) => {
+  const regUser = req.body.registerUser;
+  const regPass = req.body.registerPass;
+  const checkDuplicate = await User.exists({ user: regUser });
+  if (checkDuplicate) {
+    res.send({ success: false });
+  }
+  if (!checkDuplicate) {
+    await User.create({ user: regUser, pass: regPass });
+    const token = jwt.sign({ username: regUser }, "secret", {
+      expiresIn: 86400 * 30,
+    });
+    return res.json({ success: true, token: token });
+  }
+});
 module.exports = router;

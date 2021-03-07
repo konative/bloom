@@ -1,15 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { hideRegister } from "../../../redux/actions/displayRegister.js";
-import { hide } from "../../../redux/actions/displaySearchActions.js";
+import { Redirect } from "react-router-dom";
+import { login } from "../../../redux/actions/isLogged.js";
+
 import "./SignupForm.css";
 
-function SignupForm({ displayRegister, hideRegister }) {
+function SignupForm({ displayRegister, hideRegister, login }) {
+  const [registerUser, setRegisterUser] = useState("");
+  const [registerPass, setRegisterPass] = useState("");
+  const [redirect, setRedirect] = useState(false);
+
+  //Cleanup for Signup Form
+  useEffect(() => {
+    return async () => {
+      await hideRegister();
+    };
+  }, []);
+
   if (displayRegister) {
     const handleSubmit = () => {};
     const handleClose = () => {
       hideRegister();
     };
+
+    const registerHandler = async (event) => {
+      event.preventDefault();
+
+      await fetch("http://localhost:5000/register", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          registerUser,
+          registerPass,
+        }),
+      }).then(async (res) => {
+        await res.json().then((data) => {
+          if (data.success) {
+            localStorage.setItem("token", data.token);
+            login();
+            setRedirect(true);
+          }
+        });
+      });
+    };
+
+    if (redirect) {
+      return <Redirect to="/"></Redirect>;
+    }
+
     return (
       <div className="popup">
         <div className="popup-inner">
@@ -24,8 +63,8 @@ function SignupForm({ displayRegister, hideRegister }) {
           >
             <input
               placeholder="Choose a username"
-              //value={username}
-              //onChange={(e) => setUserName(e.target.value)}
+              value={registerUser}
+              onChange={(e) => setRegisterUser(e.target.value)}
               required
               className="input1"
             />
@@ -33,13 +72,15 @@ function SignupForm({ displayRegister, hideRegister }) {
             <input
               type="password"
               placeholder="Choose a password"
-              //value={password}
-              //onChange={(e) => setPassword(e.target.value)}
+              value={registerPass}
+              onChange={(e) => setRegisterPass(e.target.value)}
               required
               className="inputs"
             />
             <br />
-            <button>Submit</button>
+            <button type="submit" onClick={registerHandler}>
+              Submit
+            </button>
           </form>
         </div>
       </div>
@@ -53,6 +94,7 @@ function SignupForm({ displayRegister, hideRegister }) {
 
 const mapDispatchToProps = {
   hideRegister,
+  login,
 };
 
 const mapStateToProps = (state) => {
