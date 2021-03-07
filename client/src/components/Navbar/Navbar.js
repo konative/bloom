@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Navbar.css";
 import Searchbar from "../Searchbar/Searchbar.js";
 import { NavbarItems } from "./NavbarItems";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../../redux/actions/isLogged.js";
+import { logout, login } from "../../redux/actions/isLogged.js";
 
-function Navbar({ displaySearch, isLoggedIn, logout }) {
+function Navbar({ displaySearch, isLoggedIn, logout, login }) {
+  //On Refresh Authorize Login
+  useEffect(async () => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      console.log("JWT " + token);
+      await fetch("http://localhost:5000/auth", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "JWT " + token,
+        },
+      }).then(async (res) => {
+        const data = await res.json();
+        if (data.status === "confirmed") {
+          login();
+        }
+      });
+    }
+  }, []);
+
   const display = () => {
     if (displaySearch == true) {
       return (
@@ -67,10 +87,7 @@ function Navbar({ displaySearch, isLoggedIn, logout }) {
           </Link>
         );
       }
-
-      console.log(renderItems[0]);
     }
-    console.log(renderItems);
     return renderItems;
   };
 
@@ -92,6 +109,7 @@ function Navbar({ displaySearch, isLoggedIn, logout }) {
 
 const mapDispatchToProps = {
   logout,
+  login,
 };
 
 const mapStateToProps = (state) => {

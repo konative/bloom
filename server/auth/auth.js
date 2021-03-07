@@ -18,17 +18,18 @@ passport.use(
 passport.use(
   new JWTStrategy(
     {
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("JWT"),
       secretOrKey: "secret",
     },
     (jwt_payload, done) => {
       try {
-        if (user.id === jwt_payload.user._id) {
+        console.log("JWT-STRAT");
+        if (user.name === jwt_payload.username.username) {
           //Verification of User
           return done(null, user);
         } else {
           return done(null, false, {
-            message: "Token not matched",
+            message: "Token not found",
           });
         }
       } catch (error) {

@@ -96,21 +96,14 @@ router.post("/login", async (req, res, next) => {
       return res.json({ success: true, token });
     });
   })(req, res, next);
-
-  // console.log(user);
-  // console.log(pass);
-  // try {
-  //   const foundUser = await User.find({ user: user, pass: pass });
-  //   console.log(foundUser);
-  //   console.log("DB SEARCH: " + foundUser);
-  //   if (foundUser.length == 1) {
-  //     return res.json(true);
-  //   } else {
-  //     return res.json(false);
-  //   }
-  // } catch (e) {
-  //   console.log(e);
-  // }
 });
+
+router.post(
+  "/auth",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.send({ status: "confirmed" });
+  }
+);
 
 module.exports = router;
