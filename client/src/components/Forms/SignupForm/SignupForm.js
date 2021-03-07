@@ -10,6 +10,7 @@ function SignupForm({ displayRegister, hideRegister, login }) {
   const [registerUser, setRegisterUser] = useState("");
   const [registerPass, setRegisterPass] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [tryAgain, setTryAgain] = useState(false);
 
   //Cleanup for Signup Form
   useEffect(() => {
@@ -40,6 +41,9 @@ function SignupForm({ displayRegister, hideRegister, login }) {
             localStorage.setItem("token", data.token);
             login();
             setRedirect(true);
+          }
+          if (!data.success) {
+            setTryAgain(true);
           }
         });
       });
@@ -82,6 +86,9 @@ function SignupForm({ displayRegister, hideRegister, login }) {
               Submit
             </button>
           </form>
+          {tryAgain && (
+            <div>Username already exists. Please try with a new username.</div>
+          )}
         </div>
       </div>
     );
