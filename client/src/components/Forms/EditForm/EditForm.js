@@ -4,6 +4,12 @@ import "./EditForm.css";
 import ListingCard from "../../ListingCard/ListingCard.js";
 
 function EditForm(props) {
+  // useEffect(() => {
+  //   if (displaySearch) {
+  //     hide();
+  //   }
+  // });
+
   const [redirect, setRedirect] = useState(false);
 
   const location = useLocation();
