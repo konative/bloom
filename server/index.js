@@ -6,9 +6,9 @@ const path = require("path");
 const { allowedNodeEnvironmentFlags } = require("process");
 const mongoURL = "mongodb://localhost:27017/bloom";
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
-const Business = require("./models/businessModel");
-const listingRoutes = require("./routes/listingRouting");
+const listingRoutes = require("./routes/api.js");
 const cors = require("cors");
+const passport = require("passport");
 
 //Connect to local Mongo database
 mongoose
@@ -24,6 +24,10 @@ mongoose
     console.log(err.message);
   });
 mongoose.set("useFindAndModify", false);
+
+app.use(passport.initialize());
+
+require("./auth/auth.js");
 
 app.set("view engine", "ejs");
 app.use(cors()); //Needs to be updated before deployment for safety issues
