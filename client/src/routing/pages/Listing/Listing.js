@@ -1,10 +1,14 @@
 import React from "react";
+
+import { hide } from "../../../redux/actions/displaySearchActions.js";
+import { connect } from "react-redux";
+import { useEffect } from "react";
+
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Listing.css";
 
-
-function Listing() {
+function Listing({ hide, displaySearch }) {
   const [isFound, setIsFound] = useState(false);
   const [listingData, setListingData] = useState({});
 
@@ -12,6 +16,11 @@ function Listing() {
   console.log(location);
   let id = location.pathname.replace("/listing/", "");
   useEffect(async () => {
+    //Hide Search
+    if (displaySearch == true) {
+      hide();
+    }
+    //Fetch Listing
     await fetch(`http://localhost:5000/listings/${id}`)
       .then((response) => response.json())
       .then((data) => {
@@ -33,4 +42,16 @@ function Listing() {
   );
 }
 
-export default Listing;
+const mapDispatchToProps = {
+  hide,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    displaySearch: state.displaySearchReducer,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Listing);
+
+//export default Listing;

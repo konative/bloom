@@ -15,7 +15,7 @@ export const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
-function App({ listings }) {
+function App() {
   return (
     <div>
       <Navbar></Navbar>
@@ -28,6 +28,7 @@ function App({ listings }) {
 const mapStateToProps = (state) => {
   return {
     listingReducer: state.listingReducer,
+    displaySearch: state.displaySearchReducer,
   };
 };
 
