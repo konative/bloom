@@ -4,6 +4,8 @@ import "./EditForm.css";
 import ListingCard from "../../ListingCard/ListingCard.js";
 
 function EditForm(props) {
+  const [redirect, setRedirect] = useState(false);
+
   const location = useLocation();
   console.log(location);
   let id = location.pathname.replace("/edit/", "");
@@ -28,7 +30,9 @@ function EditForm(props) {
 
   let history = useHistory();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     await fetch(`http://localhost:5000/edit/${id}`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -38,9 +42,23 @@ function EditForm(props) {
         address,
         desc,
       }),
-    });
-    history.push("/");
+    })
+      .then(async (res) => {
+        await res.json().then((data) => {
+          if (data.success) {
+            setRedirect(true);
+          }
+        });
+      })
+      .catch((err) => {
+        console.log("ERROR");
+      });
   };
+
+  if (redirect) {
+    return <Redirect to="/account"></Redirect>;
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="inputs">

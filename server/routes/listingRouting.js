@@ -68,6 +68,8 @@ router.post("/edit/:id", async (req, res) => {
     address: req.body.address,
     description: req.body.desc,
   });
+
+  res.send(JSON.stringify({ success: true }));
 });
 
 module.exports = router;
