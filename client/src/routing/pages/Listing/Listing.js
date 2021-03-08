@@ -1,57 +1,53 @@
-import React from "react";
+// import React, { useEffect, useState } from "react";
+// import { hide } from "../../../redux/actions/displaySearchActions.js";
+// import { connect } from "react-redux";
+// import { useLocation } from "react-router-dom";
+// import "./Listing.css";
 
-import { hide } from "../../../redux/actions/displaySearchActions.js";
-import { connect } from "react-redux";
-import { useEffect } from "react";
+// function Listing({ hide, displaySearch }) {
+//   const [isFound, setIsFound] = useState(false);
+//   const [listingData, setListingData] = useState({});
 
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import "./Listing.css";
+//   const location = useLocation();
+//   console.log(location);
+//   let id = location.pathname.replace("/listing/", "");
+//   useEffect(async () => {
+//     //Hide Search
+//     if (displaySearch == true) {
+//       hide();
+//     }
+//     //Fetch Listing
+//     await fetch(`http://localhost:5000/listings/${id}`)
+//       .then((response) => response.json())
+//       .then((data) => {
+//         if (!data.notfound) {
+//           //When data found
+//           setListingData(data);
+//           setIsFound(true);
+//         }
+//       });
+//   }, []);
 
-function Listing({ hide, displaySearch }) {
-  const [isFound, setIsFound] = useState(false);
-  const [listingData, setListingData] = useState({});
+//   if (!isFound) {
+//     return <h1>Listing NOT Found</h1>;
+//   }
+//   return (
+//     <div className="Listing">
+//       <h1>{listingData.name}</h1>
+//     </div>
+// )
+// }
 
-  const location = useLocation();
-  console.log(location);
-  let id = location.pathname.replace("/listing/", "");
-  useEffect(async () => {
-    //Hide Search
-    if (displaySearch == true) {
-      hide();
-    }
-    //Fetch Listing
-    await fetch(`http://localhost:5000/listings/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.notfound) {
-          //When data found
-          setListingData(data);
-          setIsFound(true);
-        }
-      });
-  }, []);
+// const mapDispatchToProps = {
+//   hide,
+// };
 
-  if (!isFound) {
-    return <h1>Listing NOT Found</h1>;
-  }
-  return (
-    <div className="Listing">
-      <h1>{listingData.name}</h1>
-    </div>
-  );
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     displaySearch: state.displaySearchReducer,
+//   };
+// };
 
-const mapDispatchToProps = {
-  hide,
-};
+// export default connect(mapStateToProps, mapDispatchToProps)(Listing);
 
-const mapStateToProps = (state) => {
-  return {
-    displaySearch: state.displaySearchReducer,
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Listing);
-
-//export default Listing;
+// //export default Listing;

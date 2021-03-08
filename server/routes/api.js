@@ -5,6 +5,10 @@ const router = express.Router();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
+router.get("/", (req, res) => {
+  res.send("hi");
+});
+
 //Get required listings from DB
 router.get("/listings", async (req, res) => {
   searchTerm = req.query.searchTerm;
