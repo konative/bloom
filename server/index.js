@@ -23,6 +23,7 @@ mongoose
     console.log("Error could not connect");
     console.log(err.message);
   });
+mongoose.set("useFindAndModify", false);
 
 app.set("view engine", "ejs");
 app.use(cors()); //Needs to be updated before deployment for safety issues

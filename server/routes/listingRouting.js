@@ -62,7 +62,7 @@ router.post("/edit/:id", async (req, res) => {
   const id = req.params.id;
   console.log(req.body);
   console.log(id);
-  Listing.findByIdAndUpdate(id, {
+  await Listing.findByIdAndUpdate(id, {
     name: req.body.busName,
     phoneNum: req.body.phoneNum,
     address: req.body.address,
