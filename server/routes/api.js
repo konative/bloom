@@ -30,6 +30,30 @@ router.get("/listings", async (req, res) => {
   }
 });
 
+//Find listing that belong to owner
+router.get("/owners", async (req, res) => {
+  const owner = req.query.user;
+  console.log(owner);
+  const foundUser = await Listing.find({ owner: owner });
+  console.log(foundUser);
+  res.send(JSON.stringify(foundUser));
+});
+
+//Edit logic
+router.post("/edit/:id", async (req, res) => {
+  const id = req.params.id;
+  console.log(req.body);
+  console.log(id);
+  await Listing.findByIdAndUpdate(id, {
+    name: req.body.busName,
+    phoneNum: req.body.phoneNum,
+    address: req.body.address,
+    description: req.body.desc,
+  });
+
+  res.send(JSON.stringify({ success: true }));
+});
+
 //Post new listing
 router.post("/newListing", async (req, res) => {
   const listingInfo = req.body;

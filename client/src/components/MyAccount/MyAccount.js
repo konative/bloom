@@ -17,24 +17,27 @@ function MyAccount(props) {
 
   if (myListings.length > 0) {
     return (
-        <div>
+      <div>
         <h2>My Listings:</h2>
         {myListings.map((item) => (
-        <ListingCard 
-        name={item.name}
-        description={item.description}
-        phoneNum={item.phoneNum}
-        address={item.address}
-        id={item._id}
-        edit={true}
-        ></ListingCard>))}
-        </div>
-        )
-    }
-  return ( <div>
+          <ListingCard
+            name={item.name}
+            description={item.description}
+            phoneNum={item.phoneNum}
+            address={item.address}
+            id={item._id}
+            edit={true}
+          ></ListingCard>
+        ))}
+      </div>
+    );
+  }
+  return (
+    <div>
       <h2>My Listings:</h2>
       You do not have any listings.
-  </div>)
+    </div>
+  );
 }
 
 export default MyAccount;
