@@ -17,6 +17,8 @@ function AllListings({ listing }) {
           <ListingCard
             name={item.name}
             description={item.description}
+            phoneNum={item.phoneNum}
+            address={item.address}
             id={item._id}
           ></ListingCard>
         ))}

@@ -1,29 +1,45 @@
 import React from "react";
+
 import { hide } from "../../../redux/actions/displaySearchActions.js";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./Listing.css";
+
 function Listing({ hide, displaySearch }) {
+  const [isFound, setIsFound] = useState(false);
+  const [listingData, setListingData] = useState({});
+
+  const location = useLocation();
+  console.log(location);
+  let id = location.pathname.replace("/listing/", "");
   useEffect(async () => {
+    //Hide Search
     if (displaySearch == true) {
       hide();
     }
-
-    await fetch("http://localhost:5000/isLogged", {
-      headers: {
-        Authorization: "Bearer " + (await localStorage.getItem("token")),
-      },
-    })
-      .then(async (res) => {
-        const rese = await res.json();
-        console.log(rese);
-      })
-      .catch((err) => {
-        console.log(err);
+    //Fetch Listing
+    await fetch(`http://localhost:5000/listings/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.notfound) {
+          //When data found
+          setListingData(data);
+          setIsFound(true);
+        }
       });
   }, []);
 
-  return <div>Listing</div>;
+  if (!isFound) {
+    return <h1>Listing NOT Found</h1>;
+  }
+  return (
+    <div className="Listing">
+      <h1>{listingData.name}</h1>
+    </div>
+  );
 }
 
 const mapDispatchToProps = {

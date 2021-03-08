@@ -11,6 +11,8 @@ function Main() {
       <Route exact path="/" component={Home}></Route>
       <Route exact path="/listing" component={Listing}></Route>
       <Route exact path="/login" component={Login}></Route>
+      <Route exact path="/register" component={Register}></Route>
+      <Route path="/listing" component={Listing}></Route>
     </Switch>
   );
 }

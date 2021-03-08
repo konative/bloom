@@ -8,6 +8,7 @@ const busSchema = new Schema(
     name: String,
     address: String,
     description: String,
+    phoneNum: String,
   },
   {
     collection: "businesses",
