@@ -1,10 +1,9 @@
-import {React, useState, useEffect, useForm} from "react";
+import { React, useState, useEffect, useForm } from "react";
 import { Redirect, Link, useHistory, useLocation } from "react-router-dom";
 import "./EditForm.css";
 import ListingCard from "../../ListingCard/ListingCard.js";
 
-function EditForm(props){
-
+function EditForm(props) {
   const location = useLocation();
   console.log(location);
   let id = location.pathname.replace("/edit/", "");
@@ -27,11 +26,24 @@ function EditForm(props){
   const [address, setAddress] = useState("");
   const [desc, setDesc] = useState("");
 
-  const handleSubmit = (event) => {
-  }
-    return (
-        <div>
-        <form onSubmit={handleSubmit} className="inputs">
+  let history = useHistory();
+
+  const handleSubmit = async () => {
+    await fetch(`http://localhost:5000/edit/${id}`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        busName,
+        phoneNum,
+        address,
+        desc,
+      }),
+    });
+    history.push("/");
+  };
+  return (
+    <div>
+      <form onSubmit={handleSubmit} className="inputs">
         <input
           value={busName}
           onChange={(e) => setBusName(e.target.value)}
@@ -62,10 +74,9 @@ function EditForm(props){
         />
         <br />
         <button>Save Changes</button>
-        </form>
-        </div>
-    );
+      </form>
+    </div>
+  );
 }
-
 
 export default EditForm;
