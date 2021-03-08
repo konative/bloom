@@ -23,6 +23,7 @@ mongoose
     console.log("Error could not connect");
     console.log(err.message);
   });
+mongoose.set("useFindAndModify", false);
 
 app.use(passport.initialize());
 
