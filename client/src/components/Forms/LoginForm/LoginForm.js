@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../../redux/actions/isLogged.js";
+import { updateCurrentUser } from "../../../redux/actions/updateCurrentUser.js";
 import "./LoginForm.css";
 
-function LoginForm({ login, isLogged }) {
+function LoginForm({ login, isLogged, updateCurrentUser }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [tryAgain, setTryAgain] = useState(false);
@@ -32,7 +33,9 @@ function LoginForm({ login, isLogged }) {
               setTryAgain(true);
             } else {
               setTryAgain(false);
+              console.log(data);
               localStorage.setItem("token", data.token);
+              updateCurrentUser(data.username);
               //setRedirect(true);
               login();
             }
@@ -83,6 +86,7 @@ function LoginForm({ login, isLogged }) {
 
 const mapDispatchToProps = {
   login,
+  updateCurrentUser,
 };
 
 const mapStateToProps = (state) => {
