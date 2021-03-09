@@ -39,6 +39,21 @@ router.get("/owners", async (req, res) => {
   res.send(JSON.stringify(foundUser));
 });
 
+//Return Listing information
+router.get("/listings/:id", async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+
+  try {
+    const listingData = await Listing.findById(id);
+    res.send(listingData);
+  } catch (error) {
+    console.log(error.message);
+    res.send("NOT FOUND");
+    console.log(listingData);
+  }
+});
+
 //Edit logic
 router.post("/edit/:id", async (req, res) => {
   const id = req.params.id;
