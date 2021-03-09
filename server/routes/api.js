@@ -93,11 +93,12 @@ router.post("/login", async (req, res, next) => {
       return res.send(JSON.stringify({ status: "Invalid Login" }));
     }
     req.login(user, { session: false }, () => {
-      const body = { username: user.name };
-      const token = jwt.sign({ username: body }, "secret", {
+      console.log(user);
+      const username = user.user;
+      const token = jwt.sign({ username: username }, "secret", {
         expiresIn: 86400 * 30,
       });
-      return res.json({ success: true, token });
+      return res.json({ success: true, token, username });
     });
   })(req, res, next);
 });
@@ -107,7 +108,9 @@ router.post(
   "/auth",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.send({ status: "confirmed" });
+    const username = req.user;
+    console.log(username);
+    res.send({ status: "confirmed", username: username });
   }
 );
 

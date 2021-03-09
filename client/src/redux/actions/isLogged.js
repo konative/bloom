@@ -5,6 +5,8 @@ export const login = () => (dispatch, getState) => {
 };
 
 export const logout = () => (dispatch, getState) => {
+  localStorage.removeItem("token");
+
   dispatch({
     type: "logout",
   });

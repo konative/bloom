@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import ListingCard from "../ListingCard/ListingCard.js";
 import "./MyAccount.css";
 
-function MyAccount(props) {
-  const owner = "johnfc@gmail.com";
+function MyAccount({ currentUser }) {
+  const owner = currentUser;
   const [myListings, setMyListings] = useState([]);
   useEffect(async () => {
     await fetch(`http://localhost:5000/owners?user=${owner}`, {}).then(
@@ -18,7 +19,7 @@ function MyAccount(props) {
   if (myListings.length > 0) {
     return (
       <div>
-        <h2>My Listings:</h2>
+        <h2>My Listings: {owner}</h2>
         {myListings.map((item) => (
           <ListingCard
             name={item.name}
@@ -34,10 +35,16 @@ function MyAccount(props) {
   }
   return (
     <div>
-      <h2>My Listings:</h2>
+      <h2>My Listings: {owner}</h2>
       You do not have any listings.
     </div>
   );
 }
 
-export default MyAccount;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUserReducer.currentUser,
+  };
+};
+
+export default connect(mapStateToProps)(MyAccount);

@@ -25,7 +25,7 @@ const seedDB = async () => {
       description: `${seedBusinesses[seed].description}`,
       phoneNum: `${seedBusinesses[seed].phoneNum}`,
       address: `${seedBusinesses[seed].address}`,
-      owner: `${seedBusinesses[seed].owner}`
+      owner: `${seedBusinesses[seed].owner}`,
     });
     await tempSeed.save();
   }
@@ -51,7 +51,7 @@ seedBusinesses = [
     description: "Most amazing Baked Sweets and Desserts for all Occasions",
     phoneNum: "1231231236",
     address: "123 Daid Rd",
-    owner: "deepikais@gmail.com",
+    owner: "bob",
   },
   {
     name: "John's Pliers",

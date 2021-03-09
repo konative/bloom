@@ -6,8 +6,15 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout, login } from "../../redux/actions/isLogged.js";
+import { updateCurrentUser } from "../../redux/actions/updateCurrentUser";
 
-function Navbar({ displaySearch, isLoggedIn, logout, login }) {
+function Navbar({
+  displaySearch,
+  isLoggedIn,
+  logout,
+  login,
+  updateCurrentUser,
+}) {
   //On Refresh Authorize Login
   useEffect(async () => {
     const token = window.localStorage.getItem("token");
@@ -21,7 +28,9 @@ function Navbar({ displaySearch, isLoggedIn, logout, login }) {
         },
       }).then(async (res) => {
         const data = await res.json();
+        console.log(data);
         if (data.status === "confirmed") {
+          updateCurrentUser(data.username);
           login();
         }
       });
@@ -36,6 +45,11 @@ function Navbar({ displaySearch, isLoggedIn, logout, login }) {
         </div>
       );
     }
+  };
+
+  const logoutLogic = () => {
+    updateCurrentUser("");
+    logout();
   };
 
   const renderNavbarItems = () => {
@@ -66,7 +80,7 @@ function Navbar({ displaySearch, isLoggedIn, logout, login }) {
         );
       }
       if (item.title === "Logout" && isLoggedIn) {
-        item.onClick = logout;
+        item.onClick = logoutLogic;
         renderItems.push(
           <Link
             to={item.url}
@@ -111,6 +125,7 @@ function Navbar({ displaySearch, isLoggedIn, logout, login }) {
 const mapDispatchToProps = {
   logout,
   login,
+  updateCurrentUser,
 };
 
 const mapStateToProps = (state) => {
