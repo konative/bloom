@@ -78,11 +78,19 @@ router.delete("/delete/:id", async (req, res) => {
 //Post new listing
 router.post("/newListing", async (req, res) => {
   const listingInfo = req.body;
-  const newListing = Listing(listingInfo);
+  const newListing = Listing({
+    name: listingInfo.busName,
+    address: listingInfo.address,
+    description: listingInfo.desc,
+    phoneNum: listingInfo.phoneNum,
+    owner: listingInfo.currentUser,
+  });
+  console.log("(SERVERSIDE) Create new listing: " + newListing);
   try {
     await newListing.save();
-    res.status(201); //Successfully created
+    res.send({ status: "success" }); //Successfully created
   } catch (error) {
+    res.send({ status: "failed" });
     console.log("Could not save new listing to database");
     console.log(error.message);
   }

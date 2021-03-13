@@ -1,17 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import "./Account.css";
-import MyAccount from "../../../components/MyAccount/MyAccount.js";
+import RegisterForm from "../../../components/Forms/RegisterListingForm/RegisterListingForm.js";
 import { hide } from "../../../redux/actions/displaySearchActions";
-
-function Account({ hide, displaySearch }) {
+function Register({ hide, displaySearch }) {
   if (displaySearch) {
     hide();
   }
   return (
-    <div className="Account">
-      <h1>My Account</h1>
-      <MyAccount></MyAccount>
+    <div>
+      <RegisterForm></RegisterForm>
     </div>
   );
 }
@@ -26,4 +23,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Account);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

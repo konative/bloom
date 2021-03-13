@@ -1,27 +1,31 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 import AllListings from "../../../components/AllListings/AllListings";
 import { show } from "../../../redux/actions/displaySearchActions.js";
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./Home.css";
 
-function Home({ show, displaySearch }) {
+function Home({ show, displaySearch, isLogged }) {
   useEffect(() => {
     if (displaySearch == false) {
       show();
+      window.location.reload();
     }
   });
 
-  // if (displaySearch === false) {
-  //   console.log("Y" + displaySearch);
-  //   show();
-  // }
-  //
+  const [redirect, setRedirect] = useState(false);
+
+  if (redirect) {
+    return <Redirect to="/register"></Redirect>;
+  }
 
   return (
     <div className="Home">
       <h1>Home</h1>
+      {isLogged && (
+        <button onClick={() => setRedirect(true)}>ADD NEW LISTING</button>
+      )}
       <AllListings></AllListings>
     </div>
   );
@@ -33,9 +37,8 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     displaySearch: state.displaySearchReducer,
+    isLogged: state.isLoggedReducer,
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-// export default Home;
