@@ -69,6 +69,12 @@ router.post("/edit/:id", async (req, res) => {
   res.send(JSON.stringify({ success: true }));
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  await Listing.findByIdAndDelete(id);
+  res.send(JSON.stringify({ success: true }));
+});
+
 //Post new listing
 router.post("/newListing", async (req, res) => {
   const listingInfo = req.body;

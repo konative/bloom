@@ -15,6 +15,24 @@ function ListingCard(props) {
 
   const edit = props.edit;
 
+  const deleteHandler = async () => {
+    if (window.confirm("Are you sure you want to delete this listing?")) {
+      await fetch(`http://localhost:5000/delete/${props.id}`, {
+        method: "delete",
+      })
+        .then(async (res) => {
+          await res.json().then((data) => {
+            if (data.success) {
+              setRedirect(true);
+            }
+          });
+        })
+        .catch((err) => {
+          console.log("ERROR");
+        });
+    }
+  };
+
   if (edit) {
     return (
       <div className="card" onClick={redirectHandler}>
@@ -24,6 +42,7 @@ function ListingCard(props) {
         <h3>Contact: {props.phoneNum}</h3>
         <h3>Address: {props.address}</h3>
         <Link to={`/edit/${props.id}`}>Edit</Link>
+        <button onClick={deleteHandler}>Delete Listing</button>
       </div>
     );
   }
