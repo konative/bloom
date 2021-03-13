@@ -12,7 +12,7 @@ function Main() {
     <Switch>
       <Route exact path="/" component={Home}></Route>
       <Route path="/listing" component={Listing}></Route>
-      <Route path="/myAccount" component={Account}></Route>
+      <Route path="/account" component={Account}></Route>
       <Route path="/edit/:id" component={Edit}></Route>
       <Route exact path="/register" component={Register}></Route>
       <Route exact path="/login" component={Login}></Route>
