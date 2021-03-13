@@ -62,7 +62,7 @@ function EditForm(props) {
   };
 
   if (redirect) {
-    return <Redirect to="/account"></Redirect>;
+    return <Redirect to="/myAccount"></Redirect>;
   }
 
   return (
