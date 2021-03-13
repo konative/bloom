@@ -1,23 +1,39 @@
 import React, { useState } from "react";
-import "./Form.css";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import "./RegisterListingForm.css";
 
-function Form() {
+function RegisterListingForm({ currentUser }) {
   const [busName, setBusName] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [address, setAddress] = useState("");
   const [desc, setDesc] = useState("");
   const [termsAndCon, setTermsAndCon] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`
-        Business Name: ${busName}
-        Phone Number: ${phoneNum}
-        Address: ${address}
-        Description: ${desc}
-        Accepted Terms and Conditions: ${termsAndCon}
-    `);
+
+    await fetch(`http://localhost:5000/newListing`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        busName,
+        phoneNum,
+        address,
+        desc,
+        currentUser,
+      }),
+    }).then(async (res) => {
+      const data = await res.json();
+      console.log(data);
+      setRedirect(true);
+    });
   };
+
+  if (redirect) {
+    return <Redirect to={{ pathname: "/", state: { id: "123" } }}></Redirect>;
+  }
 
   return (
     <div className="formCont">
@@ -64,10 +80,18 @@ function Form() {
           I accept the Terms and Conditions
         </label>
         <br />
-        <button>Submit</button>
+        <button type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
     </div>
   );
 }
 
-export default Form;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUserReducer.currentUser,
+  };
+};
+
+export default connect(mapStateToProps)(RegisterListingForm);
