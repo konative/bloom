@@ -42,7 +42,9 @@ function ListingCard(props) {
         <h3>Contact: {props.phoneNum}</h3>
         <h3>Address: {props.address}</h3>
         <Link to={`/edit/${props.id}`}>Edit</Link>
-        <button onClick={deleteHandler}>Delete Listing</button>
+        <Link to={"/account"} onClick={deleteHandler}>
+          Delete Listing
+        </Link>
       </div>
     );
   }
