@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import "./ListingCard.css";
 
 function ListingCard(props) {
-  const [redirect, setRedirect] = useState(false);
-  const redirectHandler = () => {
-    setRedirect(true);
+  const history = useHistory();
+  const [redirectDetails, setRedirectDetails] = useState(false);
+  const [redirectMyAccount, setRedirectMyAccount] = useState(false);
+  const redirectDetailsHandler = () => {
+    setRedirectDetails(true);
   };
   const renderRedirect = () => {
-    if (redirect) {
-      return <Redirect push to={`/listing/${props.id}`} />;
+    if (redirectDetails) {
+      return <Redirect push to={`/edit/${props.id}`} />;
     }
   };
 
@@ -23,7 +25,7 @@ function ListingCard(props) {
         .then(async (res) => {
           await res.json().then((data) => {
             if (data.success) {
-              setRedirect(true);
+              history.push("/account");
             }
           });
         })
@@ -35,7 +37,7 @@ function ListingCard(props) {
 
   if (edit) {
     return (
-      <div className="card" onClick={redirectHandler}>
+      <div className="card" onClick={redirectDetailsHandler}>
         {renderRedirect()}
         <h1>{props.name}</h1>
         <h2>Description: {props.description}</h2>
@@ -48,7 +50,7 @@ function ListingCard(props) {
   }
 
   return (
-    <div className="card" onClick={redirectHandler}>
+    <div className="card" onClick={redirectDetailsHandler}>
       {renderRedirect()}
       <h1>{props.name}</h1>
       <h2>Description: {props.description}</h2>
