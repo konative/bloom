@@ -11,7 +11,7 @@ export const NavbarItems = [
   },
   {
     title: "My Account",
-    url: "/account",
+    url: "/myAccount",
     cName: "navbarItems",
   },
   {
