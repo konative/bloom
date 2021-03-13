@@ -9,7 +9,7 @@ function ListingCard(props) {
   };
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect push to="/" />;
+      return <Redirect push to={`/listing/${props.id}`} />;
     }
   };
 
