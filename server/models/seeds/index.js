@@ -54,10 +54,10 @@ seedBusinesses = [
     owner: "bob",
   },
   {
-    name: "John's Pliers",
+    name: "Jon's Pliers",
     description: "John sells pliers!",
     phoneNum: "1231231236",
-    address: "125 Daid Rd",
+    address: "125 Daiy Rd",
     owner: "johnfc@gmail.com",
   },
 ];
