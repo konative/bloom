@@ -40,7 +40,7 @@ function ListingCard(props) {
       <div className="card" onClick={redirectDetailsHandler}>
         {renderRedirect()}
         <h1>{props.name}</h1>
-        <h2>Description: {props.description}</h2>
+        <h2>{props.description}</h2>
         <h3>Contact: {props.phoneNum}</h3>
         <h3>Address: {props.address}</h3>
         <Link to={`/edit/${props.id}`}>Edit</Link>
@@ -53,7 +53,7 @@ function ListingCard(props) {
     <div className="card" onClick={redirectDetailsHandler}>
       {renderRedirect()}
       <h1>{props.name}</h1>
-      <h2>Description: {props.description}</h2>
+      <h2>{props.description}</h2>
       <h3>Contact: {props.phoneNum}</h3>
       <h3>Address: {props.address}</h3>
     </div>
