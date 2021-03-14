@@ -80,9 +80,7 @@ function RegisterListingForm({ currentUser }) {
           I accept the Terms and Conditions
         </label>
         <br />
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
