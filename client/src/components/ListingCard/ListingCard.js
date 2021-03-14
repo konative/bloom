@@ -11,7 +11,7 @@ function ListingCard(props) {
   };
   const renderRedirect = () => {
     if (redirectDetails) {
-      return <Redirect push to={`/edit/${props.id}`} />;
+      return <Redirect push to={`/listing/${props.id}`} />;
     }
   };
 
