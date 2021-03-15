@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import allReducers from "./redux/reducers/index.js";
+import "./App.css";
 
 const middleware = [thunk];
 
@@ -17,7 +18,7 @@ export const store = createStore(
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Navbar></Navbar>
       <Main></Main>
       <Footer></Footer>

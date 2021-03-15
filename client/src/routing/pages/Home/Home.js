@@ -22,7 +22,6 @@ function Home({ show, displaySearch, isLogged }) {
 
   return (
     <div className="Home">
-      <h1>Home</h1>
       {isLogged && (
         <button onClick={() => setRedirect(true)}>ADD NEW LISTING</button>
       )}

@@ -1,10 +1,6 @@
 .Navbar {
   border-width: 1em;
-  background: linear-gradient(
-    90deg,
-    rgb(211, 139, 93) 0%,
-    rgba(110, 37, 148, 1) 100%
-  );
+  background-color: #ebf5ee;
   height: 80px;
   font-family: "Montserrat", sans-serif;
   display: flex;
@@ -14,7 +10,7 @@
 }
 
 .navbarLogo {
-  color: white;
+  color: #170f11;
   justify-self: start;
   margin-left: 20px;
   cursor: pointer;
@@ -33,15 +29,27 @@
 }
 
 .navbarItems {
-  color: white;
+  color: #170f11
+  
 }
 
 .navbarItems:hover {
-  background-color: #6d76f7;
+  background-color: #736ced;
+  color: #ebf5ee;
 }
 
 .search {
+  background-color: white;
+  font-family: "Montserrat", sans-serif;
   margin-left: 400px;
-  border-radius: 10px;
-  border-width: 0px;
+  border-radius: 40px;
+  border-width: 1px;
+}
+
+input[type=text]:focus {
+  background-color: #ebf5ee;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 40px;
+  border-width: 1px;
+  outline: none;
 }

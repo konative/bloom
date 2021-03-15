@@ -109,10 +109,11 @@ function Navbar({
   return (
     <nav className="Navbar">
       <h1 className="navbarLogo">bloom.</h1>
-
-      {
-        display() //displays SearchBar
-      }
+      <div className="searchbar">
+        {
+          display() //displays SearchBar
+        }
+      </div>
       <ul className="navMenu">
         {
           renderNavbarItems() //displays navbar items depending on states
