@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import ListingCard from "../ListingCard/ListingCard.js";
 import "./MyAccount.css";
+import {
+  AwesomeButton,
+  AwesomeButtonProgress,
+  AwesomeButtonSocial,
+} from "react-awesome-button";
 
 function MyAccount({ currentUser }) {
   const owner = currentUser;
@@ -30,6 +35,7 @@ function MyAccount({ currentUser }) {
             edit={true}
           ></ListingCard>
         ))}
+        <AwesomeButton type="primary">Primary</AwesomeButton>
       </div>
     );
   }

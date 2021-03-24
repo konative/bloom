@@ -7,6 +7,11 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout, login } from "../../redux/actions/isLogged.js";
 import { updateCurrentUser } from "../../redux/actions/updateCurrentUser";
+import {
+  AwesomeButton,
+  AwesomeButtonProgress,
+  AwesomeButtonSocial,
+} from "react-awesome-button";
 
 function Navbar({
   displaySearch,
@@ -102,6 +107,7 @@ function Navbar({
           </Link>
         );
       }
+      <AwesomeButton type="primary">Primary</AwesomeButton>;
     }
     return renderItems;
   };
